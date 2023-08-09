@@ -140,4 +140,7 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'mdsamrat25800@gmail.com'
 EMAIL_HOST_PASSWORD = 'dzkaxrblycvbdtfg'
 DEFAULT_FROM_EMAIL = 'mdsamrat25800@gmail.com'
-PASSWORD_RESET_TIMEOUT = 14400  # Seconds
+# PASSWORD_RESET_TIMEOUT = 14400  # Seconds
+
+EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+EMAIL_FILE_PATH = BASE_DIR / "sent_emails"

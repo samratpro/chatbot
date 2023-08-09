@@ -1,216 +1,64 @@
 {% extends 'base.html' %}
-{% block content %}
 {% load static %}
-
-<div class="container-fluid pe-5">
-    <div class="row">
+{% block content %}
 
 
- <!-- Dashboard Menu -->       
+            <div class="container-fluid">
+                <div class="row">
 
-    <div class="sidebar-toggle" onclick="opennav()" id="opennav-id">
-        <div class="open-icon"></div><div class="open-icon"></div><div class="open-icon"></div>
-    </div>
-        <div class="dashnav col-sm-3 px-0 multi-collapse" id="sidbar-control">
 
-            <div class="sidebar-close" onclick="closenav()">
-                <div class="close-1"></div><div class="close-2"></div>
-            </div>
+            <!-- Dashboard Menu -->       
 
-            <div class="d-flex flex-column align-items-center align-items-sm-start pt-2 text-white min-vh-100">
-                <div class="newchat">
-                    <a href="#" >  +  Open New Chat... </a>
+                <div class="sidebar-toggle" onclick="opennav()" id="opennav-id">
+                    <div class="open-icon"></div><div class="open-icon"></div><div class="open-icon"></div>
                 </div>
-                <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
-                    <li>
-                       <a href="#" class="nav-link"> <img src="{% static 'img/chaticon.png' %}"/>  HTML CSS  Helping Conversion</a>   <a href="#"><img src="{% static 'img/delete.png' %}"/> </a>
-                    </li> 
-                    <li>
-                        <a href="#" class="nav-link"> <img src="{% static 'img/chaticon.png' %}"/> How to use openai account for free</a>    <a href="#"><img src="{% static 'img/delete.png' %}"/> </a>  
-                    </li> 
-                    <li>
-                        <a href="#" class="nav-link"> <img src="{% static 'img/chaticon.png' %}"/> YouTube API</a>    <a href="#"><img src="{% static 'img/delete.png' %}"/> </a>
-                    </li> 
-                    <li>
-                        <a href="#" class="nav-link"> <img src="{% static 'img/chaticon.png' %}"/> Website Creating tips for beginner</a>    <a href="#"><img src="{% static 'img/delete.png' %}"/> </a>
-                    </li>   
-                    <li>
-                        <a href="#" class="nav-link"> <img src="{% static 'img/chaticon.png' %}"/> Bulk Post making for new programmer</a>    <a href="#"><img src="{% static 'img/delete.png' %}"/> </a>
-                    </li>
-                    <li>
-                        <a href="#" class="nav-link"> <img src="{% static 'img/chaticon.png' %}"/> Single Post</a>    <a href="#"><img src="{% static 'img/delete.png' %}"/> </a>
-                    </li>
-                    <li>
-                        <a href="#" class="nav-link"> <img src="{% static 'img/chaticon.png' %}"/> Completed Posts</a>    <a href="#"><img src="{% static 'img/delete.png' %}"/> </a>
-                    </li>  
-                    <li>
-                        <a href="#" class="nav-link"> <img src="{% static 'img/chaticon.png' %}"/> Tutorial for Dashboard</a>    <a href="#"><img src="{% static 'img/delete.png' %}"/> </a>
-                    </li> 
-                    <li>
-                        <a href="#" class="nav-link"> <img src="{% static 'img/chaticon.png' %}"/> OpenAI API Guide</a>    <a href="#"><img src="{% static 'img/delete.png' %}"/> </a>
-                    </li> 
-                    <li>
-                        <a href="#" class="nav-link"> <img src="{% static 'img/chaticon.png' %}"/> YouTube API</a>    <a href="#"><img src="{% static 'img/delete.png' %}"/> </a>
-                    </li> 
-                    <li>
-                        <a href="#" class="nav-link"> <img src="{% static 'img/chaticon.png' %}"/> Website</a>    <a href="#"><img src="{% static 'img/delete.png' %}"/> </a>
-                    </li>   
-                    <li>
-                        <a href="#" class="nav-link"> <img src="{% static 'img/chaticon.png' %}"/> Bulk Post</a>    <a href="#"><img src="{% static 'img/delete.png' %}"/> </a>
-                    </li>
-                    <li>
-                        <a href="#" class="nav-link"> <img src="{% static 'img/chaticon.png' %}"/> Single Post</a>    <a href="#"><img src="{% static 'img/delete.png' %}"/> </a>
-                    </li>
-                    <li>
-                        <a href="#" class="nav-link"> <img src="{% static 'img/chaticon.png' %}"/> Completed Posts</a>    <a href="#"><img src="{% static 'img/delete.png' %}"/> </a>
-                    </li>   
-                </ul>
+                    <div class="dashnav col-sm-3 px-0 multi-collapse" id="sidbar-control">
+
+                        <div class="sidebar-close" onclick="closenav()">
+                            <div class="close-1"></div><div class="close-2"></div>
+                        </div>
+
+                        <div class="d-flex flex-column align-items-center align-items-sm-start pt-2 text-white min-vh-100">
+                            <div class="newchat">
+                                <a href="{% url 'newchatpage' %}" >  +  Open New Chat... </a>
+                            </div>
+                            <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+                               
+                                {% block chatlist %}
+                                    {% for chat in chat_all %}
+                                        <li>
+                                            <a href="{% url 'chat_detail' chat.id %}" class="nav-link"> <img src="{% static 'img/chaticon.png' %}"/>  {{chat}}</a>   <a href="{% url 'delete_chat' chat.id %}"><img src="{% static 'img/delete.png' %}"/> </a>
+                                        </li> 
+                                    {% endfor %}  
+                
+                                {% endblock chatlist %}  
+
+            
+                            </ul>
+                        </div>
+
+                    <div class="setting">
+                        <div class="setting-wrapper">
+                            <a href="#" class="nav-link"> <img class="chat-icon" src="{% static 'img/payment.png' %}" alt="chat icon"/>  Subscription</a>
+                            <a href="#" class="nav-link"> <img class="chat-icon" src="{% static 'img/setting.png' %}" alt="chat icon"/>  Setting</a>
+                        </div>
+                    </div>
             </div>
 
-            <div class="setting">
-                <div class="setting-wrapper">
-                    <a href="#" class="nav-link"> <img class="chat-icon" src="{% static 'img/payment.png' %}" alt="chat icon"/>  Subscription</a>
-                    <a href="#" class="nav-link"> <img class="chat-icon" src="{% static 'img/setting.png' %}" alt="chat icon"/>  Setting</a>
-                </div>
-            </div>
-        </div>
 
+                   
+    <!-- Content Row -->
+    <div class="col-sm-9" id="dashcontent">
+        {% block dashboardcontent %}
 
-
-<!-- Content Row -->
-        <div class="col-sm-9 py-3">
-           {% block dashboardcontent %}
+           
            
 
-                <!-- Content Row -->
-                <div class="row">
-                    <!-- Total Article  Card Example -->
-                    <div class="col-xl-3 col-md-6 mt-4 ms-4">
-                        <div class="card border-left-info shadow h-100 py-2">
-                            <div class="card-body">
-                                <div class="row no-gutters align-items-center">
-
-                                    <div class="col mr-2">
-                                        <div class="text-sm font-weight-bold text-dark text-uppercase mb-1">
-                                            Bulk Posted
-                                        </div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
-                                    </div>
-                                    <div class="col-auto">
-                                        <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Total Website Card Example -->
-                    <div class="col-xl-3 col-md-6 mt-4 ms-4">
-                        <div class="card border-left-info shadow h-100 py-2">
-                            <div class="card-body">
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div class="text-sm font-weight-bold text-dark text-uppercase mb-1">
-                                            Single Posted
-                                        </div>
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col-auto">
-                                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
-                                                    
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-auto">
-                                        <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Total Website Card Example -->
-                    <div class="col-xl-3 col-md-6 mt-4 ms-4">
-                        <div class="card border-left-info shadow h-100 py-2">
-                            <div class="card-body">
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div class="text-sm font-weight-bold text-dark text-uppercase mb-1">
-                                            Website List
-                                        </div>
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col-auto">
-                                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
-                                                    
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-auto">
-                                        <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                </div>
-
-
-                <!-- Content Row -->
-                <div class="row">
-                    <!-- Total Article  Card Example -->
-                    <div class="col-xl-3 col-md-6 mt-4 ms-4">
-                        <div class="card border-left-info shadow h-100 py-2">
-                            <div class="card-body">
-                                <div class="row no-gutters align-items-center">
-
-                                    <div class="col mr-2">
-                                        <div class="text-sm font-weight-bold text-dark text-uppercase mb-1">
-                                            OpenAI API
-                                        </div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                            
-
-                                        </div>
-                                    </div>
-                                    <div class="col-auto">
-                                        <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Total Website Card Example -->
-                    <div class="col-xl-3 col-md-6 mt-4 ms-4">
-                        <div class="card border-left-info shadow h-100 py-2">
-                            <div class="card-body">
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div class="text-sm font-weight-bold text-dark text-uppercase mb-1">
-                                            YouTube API
-                                        </div>
-                                        <div class="row no-gutters align-items-center">
-                                            <div class="col-auto">
-                                                <div class="h5 mb-0 mr-3 text-dark font-weight-bold">
-                                                    
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-auto">
-                                        <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
 
 
-
+       
     {% endblock dashboardcontent %}
-
-
+  </div>
+ 
 {% endblock content %}

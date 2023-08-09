@@ -22,7 +22,7 @@
     </form>
 
     <div class="mt-3">
-        <a name="forget" id="" class="btn btn-warning" href="#" role="button">Forget Password</a>
+        <a name="forget" id="" class="btn btn-warning" href="{% url 'password_reset' %}" role="button">Forget Password</a>
         <button disabled="disabled" class="ms-3 me-3">or</button>
         <a name="create_account" id="" class="btn btn-dark" href="{% url 'register' %}" role="button">Create Account</a>
     </div>

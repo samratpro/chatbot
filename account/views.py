@@ -10,6 +10,7 @@ from django.utils.encoding import force_bytes, force_str
 from django.core.mail import EmailMessage
 from .token import account_activation_token
 
+
 def login(request):
     if request.method == 'POST':
         username = request.POST['username']
@@ -98,3 +99,4 @@ def activate(request, uidb64, token):
         messages.error(request, 'Activation link is invalid!')
     
     return redirect('dashboard/')
+

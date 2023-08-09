@@ -1,7 +1,8 @@
 from django.contrib import admin
 from .models import *
 
-admin.site.register(ChatCategory)
+
 admin.site.register(Chat)
+admin.site.register(ChatMessage)
 
 # Register your models here.

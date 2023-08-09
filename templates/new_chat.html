@@ -1,0 +1,33 @@
+{% extends 'dashboard.html' %}
+{% load static %}
+
+
+          {% block chatlist %}
+            {% for chat in chat_all %}
+                <li>
+                    <a href="{% url 'chat_detail' chat.id %}" class="nav-link"> <img src="{% static 'img/chaticon.png' %}"/>  {{chat}}</a>   <a href="{% url 'delete_chat' chat.id %}"><img src="{% static 'img/delete.png' %}"/> </a>
+                </li> 
+            {% endfor %}  
+
+          {% endblock chatlist %}   
+
+
+
+{% block dashboardcontent %}
+<div class="container mt-4 text-center w-75">
+
+  <!-- new_chat.html -->
+  <h1 class="display-4 fs-4 mb-4">Open a New Chat</h1>
+  <form method="POST">
+    {% csrf_token %}
+
+    <div class="mb-3">
+      <input type="text"
+        class="form-control" name="title" required id="" aria-describedby="helpId" placeholder="Chat name...">
+    </div>
+    <button type="submit" class="btn btn-dark mt-3">Open Chat</button>
+  </form>
+
+
+</div>
+{% endblock dashboardcontent %}
