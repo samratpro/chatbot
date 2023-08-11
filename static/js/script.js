@@ -14,3 +14,4 @@ function closenav(){
     document.getElementById("dashcontent").classList.add("col-sm-12");
 
 };
+

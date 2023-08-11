@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'chatapp',
     'account',
+    'dajaxice',
+    'dajax',
 ]
 
 MIDDLEWARE = [
@@ -124,6 +126,42 @@ STATICFILES_DIRS = [
 ]
 
 STATIC_ROOT = BASE_DIR / "staticfiles" # for collect static
+
+
+
+
+
+# Ajax
+TEMPLATE_LOADERS = (
+   'django.template.loaders.filesystem.Loader',
+   'django.template.loaders.app_directories.Loader',
+   'django.template.loaders.eggs.Loader',
+)
+TEMPLATE_CONTEXT_PROCESSORS = (
+   'django.contrib.auth.context_processors.auth',
+   'django.core.context_processors.debug',
+   'django.core.context_processors.i18n',
+   'django.core.context_processors.media',
+   'django.core.context_processors.static',
+   'django.core.context_processors.request',
+   'django.contrib.messages.context_processors.messages'
+)
+
+STATICFILES_FINDERS = (
+   'django.contrib.staticfiles.finders.FileSystemFinder',
+   'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+   'dajaxice.finders.DajaxiceFinder',
+)
+
+DAJAXICE_MEDIA_PREFIX = 'dajaxice'
+
+
+
+
+
+
+
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

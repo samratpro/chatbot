@@ -18,12 +18,15 @@
 
   <!-- new_chat.html -->
   <h1 class="display-4 fs-4 mb-4">Open a New Chat</h1>
-  <form method="POST">
+  <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
 
     <div class="mb-3">
-      <input type="text"
-        class="form-control" name="title" required id="" aria-describedby="helpId" placeholder="Chat name...">
+      <input type="text" class="form-control" name="title" required id="" aria-describedby="helpId" placeholder="Chat name...">
+    </div>
+    <div class="mb-3 d-flex">
+      <div class="w-25 text-left mt-2" style="text-align: left;" ><label for="" class="form-label">PPTX : </label></div>
+      <input type="file" class="form-control text-left" required name="pptx_file" id="" >
     </div>
     <button type="submit" class="btn btn-dark mt-3">Open Chat</button>
   </form>

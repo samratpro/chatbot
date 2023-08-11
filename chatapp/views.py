@@ -8,6 +8,12 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import *
 import openai
+from django.core.files.storage import FileSystemStorage
+from pptx import Presentation
+import os
+from django.conf import settings
+
+
 
 # Create your views here.
 
@@ -33,9 +39,33 @@ def new_chat(request):
     context = {'chat_all':chat_all}
     if request.method == 'POST':
         title = request.POST.get('title')
-        chat = Chat.objects.create(title=title, user=request.user)
+        pptx_file = request.FILES['pptx_file']
+        fs = FileSystemStorage()
+        filename = fs.save(pptx_file.name, pptx_file)
+        pptx_path = os.path.join(settings.MEDIA_ROOT, filename)
+
+        presentation = Presentation(pptx_path)
+        chat_cookie = ""
+
+        for slide in presentation.slides:
+            for shape in slide.shapes:
+                if hasattr(shape, "text"):
+                    chat_cookie += shape.text + "\n"
+                    
+        print(chat_cookie)
+        chat = Chat.objects.create(title=title, chat_cookie=chat_cookie, user=request.user)
         return redirect('chat_detail', chat_id=chat.id)
     return render(request, 'new_chat.html', context)
+
+
+@login_required(login_url='login')
+def cookie_data(request, chat_id):
+    chat = get_object_or_404(Chat, id=chat_id)
+    ChatData = ChatMessage.objects.filter(chat=chat)
+    chat_all = Chat.objects.all()
+    content = chat.chat_cookie.replace('—','</br></br>')
+    context = {'chat_all':chat_all, 'chat': chat, 'ChatData': ChatData, "content":content}
+    return render(request, 'cookie.html', context) 
 
 
 @login_required(login_url='login')
@@ -43,17 +73,25 @@ def chat_detail(request, chat_id):
     chat = get_object_or_404(Chat, id=chat_id)
     ChatData = ChatMessage.objects.filter(chat=chat)
     
+    openai_key = OpenAIKey.objects.all()[0].key
+    print(openai_key)
+    openai.api_key = openai_key
+    
     chat_all = Chat.objects.all()
     context = {'chat_all':chat_all, 'chat': chat, 'ChatData': ChatData}
     
     if request.method == 'POST':
         prompt = request.POST.get('prompt')
         sender = request.user
-        replay = 'replay message'
-        ChatMessage.objects.create(chat=chat, sender=sender, prompt=prompt, replay=replay)
         
-        # Call OpenAI API to generate a response based on the user's message
-        # Store the response in the database as a new message
+        openai.api_key = openai_key
+        response = openai.ChatCompletion.create(model='gpt-3.5-turbo', messages=[{"role": "system", "content": chat.chat_cookie},{"role": "user", "content": prompt}])
+        result = ''
+        for choice in response.choices:
+            result += choice.message.content
+    
+        replay = result
+        ChatMessage.objects.create(chat=chat, sender=sender, prompt=prompt, replay=replay)
         
         return redirect('chat_detail', chat_id=chat.id)
 
