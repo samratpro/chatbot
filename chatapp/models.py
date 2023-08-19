@@ -1,7 +1,24 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    account_credit = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
+
+    def __str__(self):
+        return self.user.username
 
 
+@receiver(post_save, sender=User)
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        UserProfile.objects.create(user=instance)
+
+@receiver(post_save, sender=User)
+def save_user_profile(sender, instance, **kwargs):
+    instance.userprofile.save()
 
 
 class Chat(models.Model):
@@ -26,7 +43,7 @@ class ChatMessage(models.Model):
 
 class OpenAIKey(models.Model):
     title = models.CharField(max_length=200)
-    key = models.CharField(max_length=300)
+    key = models.CharField(max_length=500)
 
     def __str__(self):
         return self.title
@@ -34,7 +51,16 @@ class OpenAIKey(models.Model):
 
 class StripKey(models.Model):
     title = models.CharField(max_length=200)
-    key = models.CharField(max_length=300)
+    public_key = models.CharField(max_length=500, null=True, blank=True)
+    secrect_key = models.CharField(max_length=500, null=True, blank=True)
 
+    def __str__(self):
+        return self.title
+    
+
+class ApiCost(models.Model):
+    title = models.CharField(max_length=500, default="API Cost Per 1k Words")
+    cost_amount = models.FloatField(default=0.5)
+    
     def __str__(self):
         return self.title

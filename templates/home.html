@@ -2,13 +2,232 @@
 {% block content %}
 {% load static %}
 
-<div class="container-fluid pe-5">
+<div class="container w-75 pe-5">
 
-    <h1>This is Home Page</h1>
+    <h1 class="text-center mt-5 fs-1">
+        <span class="d-block mt-5" style="color:#0A2463">Easy to use and Intelligent</span>
+        <span class="d-block mt-3" style="color:#485FC7">chat with your documents</span>
+    </h1>
 
+    <div class="mt-5 fs-5 mb-5" style="color:#838ea4">
+        <p>
+            docanalyser.AI offers dynamic, context-aware interactions with one or 
+            multiple PDFs, powered by cutting-edge AI research for superior document analysis. 
+            Ask your questions and receive precise answers in real time.
+        </p>
+        <p class="mt-5 text-center fs-6">
+            Upload one or many documents and start chatting now. No credit card required.
+        </p>
+        {% if user.is_authenticated %}
+            <a name="" id="" class="btn btn-danger d-block w-25 m-auto" href="{% url 'dashboard' %}" role="button">Get started for free</a>
+        {% else %}
+            <a name="" id="" class="btn btn-danger d-block w-25 m-auto" href="{% url 'login' %}" role="button">Get started for free</a>
+        {% endif %}
+    </div>
 
+    <div class="mt-5 w-75 m-auto">
+        <h2 class="fs-4 mb-4" style="color:#0A2463">Time to Say Goodbye to Conventional Document Analysis Tools</h2>
+        <p style="color:#838ea4;">
+            Other document analysis tools are often inefficient, riddled with bugs, fail to maintain conversation context, and rely on unreliable search methodologies. 
+            That's why we created docanalyser.AI, an innovative, user-friendly and reliable tool offering intelligent document conversations.
+
+            Here's what sets docAnalyzer.AI apart for real-time interaction with PDFs:
+        </p>
+        <h2 class="fs-4 mb-4" style="color:#0A2463">Easy-to-use and Intelligent Conversations</h2>
+        <p style="color:#838ea4;">
+            docanalyser.AI cuts through the noise, offering easy and intelligent conversations with one or many documents at once. 
+            Pose direct questions to your PDF(s) and get accurate, context-aware answers instantly. 
+            Forget about sifting through layers of text and wasting precious time — docAnalyzer.AI presents relevant insights when and where you need them.
+        </p>
+        <h2 class="fs-4 mb-4" style="color:#0A2463">State-of-the-art AI Analysis</h2>
+        <p style="color:#838ea4;">
+            Our service is powered by cutting-edge AI research and state-of-the-art embeddings. 
+            This ensures superior document analysis (including metadata) and dynamic interactions with your PDFs. 
+            Not only does this make the process more efficient, but it also makes your document analysis far more insightful than other AI tools.
+        </p>
+
+        <h2 class="fs-4 mb-4" style="color:#0A2463">Privacy-Conscious and Secure Commitment</h2>
+        <p style="color:#838ea4;">
+            At docanalyser.AI, your document's privacy is our priority. Our tool does not share or use your document data for any other purposes. 
+            Rest assured, your document stays yours.
+        </p>
+
+        <h2 class="fs-4 mb-4" style="color:#0A2463">Reliable and Constantly Improving Platform</h2>
+        <p style="color:#838ea4;">
+            docanalyser.AI is ever-evolving. We're committed to improving and updating our platform based on users' feedback and the latest AI advancements. 
+            We aim to continually enhance your document analysis experience.
+        </p>
+
+        <p id="note">
+            Please note: We are delighted and pleasantly surprised by the influx of
+            new users even before our official communications. As a completely
+            independent, self-funded entity, we greatly appreciate your support. Our
+            official launch is scheduled for a few weeks from now, which gives us
+            time to refine a few more features and thoroughly test our systems.
+            Although, all core functionalities are already up and running. If you
+            wish to show us some love during this pre-launch phase, consider
+            <a target="_blank" href="https://twitter.com/docanalyser">following us on Twitter</a>
+            or
+            <a>sharing your experiences</a> with our tool. Your
+            support helps us improve and deliver better services.<br> Thank you!</p>
+
+    </div>
 </div>
 
+<div class="bg-light mt-5">
+    <div style="width:80%; margin:auto;">
+        <div class="row pt-5" style="padding-top: 80px!important;">
+            <div class="col-xl-4">
+                <div class="row">
+                    <div class="col-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#45C1FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" strokeWidth="2" class="tabler-icon tabler-icon-check "><path d="M5 12l5 5l10 -10"></path></svg>
+                    </div>
+                    <div class="col-10">
+                        <h2 class="fs-5 mb-4" style="color:#0A2463">
+                            Interactive Learning Chat
+                        </h2>
+                        <p style="color:#838ea4;" class="fs-6">
+                            Our AI-driven chat interface goes beyond mere query-response interactions. 
+                            It learns and adapts to your conversation style, 
+                            ensuring a fluid, intelligent dialogue that takes into account 
+                            the entire conversation history, not just the last query.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4">
+                <div class="row">
+                    <div class="col-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#45C1FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" strokeWidth="2" class="tabler-icon tabler-icon-check "><path d="M5 12l5 5l10 -10"></path></svg>
+                    </div>
+                    <div class="col-10">
+                        <h2 class="fs-5 mb-4" style="color:#0A2463">
+                            Sophisticated Embeddings
+                        </h2>
+                        <p style="color:#838ea4;" class="fs-6">
+                            docAnalyser.AI employs state-of-the-art AI embeddings for document analysis. 
+                            This sophisticated technology allows for a deeper, more contextual understanding of your documents, 
+                            offering you precise and meaningful insights.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4">
+                <div class="row">
+                    <div class="col-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#45C1FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" strokeWidth="2" class="tabler-icon tabler-icon-check "><path d="M5 12l5 5l10 -10"></path></svg>
+                    </div>
+                    <div class="col-10">
+                        <h2 class="fs-5 mb-4" style="color:#0A2463">
+                            Multi-Document Conversations
+                        </h2>
+                        <p style="color:#838ea4;" class="fs-6">
+                            Not only can you label documents for organization, but you can also interact dynamically within a labeled set. 
+                            This feature enables focused, context-aware discussions within your chosen set of documents, revolutionizing the way you extract information.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div style="width:80%; margin:auto;" class="pb-5">
+        <div class="row pt-5" style="padding-top: 80px!important;">
+            <div class="col-xl-4">
+                <div class="row">
+                    <div class="col-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#45C1FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" strokeWidth="2" class="tabler-icon tabler-icon-check "><path d="M5 12l5 5l10 -10"></path></svg>
+                    </div>
+                    <div class="col-10">
+                        <h2 class="fs-5 mb-4" style="color:#0A2463">
+                            Your Data, Your Control
+                        </h2>
+                        <p style="color:#838ea4;" class="fs-6">
+                            We're committed to data privacy. 
+                            Your document data will never be shared with, or sold to any third-parties.
+                            It will never be used for any other purpose other 
+                            than to provide you with the best document analysis service.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4">
+                <div class="row">
+                    <div class="col-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#45C1FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" strokeWidth="2" class="tabler-icon tabler-icon-check "><path d="M5 12l5 5l10 -10"></path></svg>
+                    </div>
+                    <div class="col-10">
+                        <h2 class="fs-5 mb-4" style="color:#0A2463">
+                            Personalized Tuning
+                        </h2>
+                        <p style="color:#838ea4;" class="fs-6">
+                            docAnalyser.AI understands that different fields have unique requirements. 
+                            Whether you're in law, administration, research, or any other profession, 
+                            we tune our document analysis system to suit your specific use cases, 
+                            ensuring more relevant and valuable insights.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4">
+                <div class="row">
+                    <div class="col-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#45C1FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" strokeWidth="2" class="tabler-icon tabler-icon-check "><path d="M5 12l5 5l10 -10"></path></svg>
+                    </div>
+                    <div class="col-10">
+                        <h2 class="fs-5 mb-4" style="color:#0A2463">
+                            Seamless Integrations
+                        </h2>
+                        <p style="color:#838ea4;" class="fs-6">
+                            Integrate docAnalyzer.AI with your preferred tools and platforms seamlessly. 
+                            Our tool is designed to fit into your existing infrastructure smoothly, facilitating a streamlined 
+                            and efficient document analysis process.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="mt-5">
+    <div style="width:80%; margin:auto;">
+        <h2 class="text-left mt-5 mb-5 fs-2">
+            <span class="d-block mt-5" style="color:#0A2463">Ready to dive into your PDFs?</span>
+            <span class="d-block mt-3" style="color:#485FC7">Start your free trial today</span>
+        </h2>
+        <div class="row">
+            <div class="col-xl-9" style="color:#838ea4;">
+                Unlock the potential of your PDFs with docAnalyser.AI. Begin your journey towards efficient, AI-powered document analysis.
+            </div>
+            <div class="col-xl-3">
+                {% if user.is_authenticated %}
+                <a name="" id="" class="btn btn-danger d-block m-auto" href="{% url 'dashboard' %}" role="button">Get started for free</a>
+                {% else %}
+                    <a name="" id="" class="btn btn-danger d-block m-auto" href="{% url 'login' %}" role="button">Get started for free</a>
+                {% endif %}
+            </div>
+        </div>
+
+        <ul class="nav justify-content-center mt-5 mb-5 pb-4 border-bottom ">
+            <li class="nav-item">
+                <a class="nav-link" style="font-weight: bold; color:#0A246D;" href="{% url 'home' %}" >Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" style="font-weight: bold; color:#0A246D;" href="{% url 'login' %}">Login</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" style="font-weight: bold; color:#0A246D;" href="{% url 'register' %}">Register</a>
+            </li>
+        </ul>
+
+        <p class="mt-3 mb-5 text-center">All rights reserved © docAnalyser.AI 2023</p>
+
+
+    </div>
+</div>
 
 
 {% endblock content %}

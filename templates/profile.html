@@ -1,0 +1,26 @@
+{% extends 'dashboard.html' %}
+{% load static %}
+
+
+          {% block chatlist %}
+            {% for chat in chat_all %}
+                <li>
+                    <a href="{% url 'chat_detail' chat.id %}" class="nav-link"> <img src="{% static 'img/chaticon.png' %}"/>  {{chat}}</a>   <a href="{% url 'delete_chat' chat.id %}"><img src="{% static 'img/delete.png' %}"/> </a>
+                </li> 
+            {% endfor %}  
+
+          {% endblock chatlist %}   
+
+
+
+{% block dashboardcontent %}
+<div class="container mt-4 text-center w-75">
+
+  <!-- accounts/templates/profile.html -->
+  <h1 class="display-6 fs-4">username : {{ user_profile.user.username }}</h1>
+  <p>Account Credit: ${{ user_profile.account_credit }}</p>
+  
+
+
+</div>
+{% endblock dashboardcontent %}

@@ -39,8 +39,8 @@
 
                     <div class="setting">
                         <div class="setting-wrapper">
-                            <a href="#" class="nav-link"> <img class="chat-icon" src="{% static 'img/payment.png' %}" alt="chat icon"/>  Subscription</a>
-                            <a href="#" class="nav-link"> <img class="chat-icon" src="{% static 'img/setting.png' %}" alt="chat icon"/>  Setting</a>
+                            <a href="{% url 'add_credit' %}" class="nav-link"> <img class="chat-icon" src="{% static 'img/payment.png' %}" alt="chat icon"/>  Subscription</a>
+                            <a href="{% url 'profile' %}" class="nav-link"> <img class="chat-icon" src="{% static 'img/setting.png' %}" alt="chat icon"/>  Setting</a>
                         </div>
                     </div>
             </div>
@@ -48,7 +48,7 @@
 
                    
     <!-- Content Row -->
-    <div class="col-sm-9" id="dashcontent">
+    <div class="col-sm-9 pb-5" id="dashcontent">
         {% block dashboardcontent %}
 
            

@@ -186,3 +186,13 @@ textarea:focus {
     border-color: #5e8cbd;
     box-shadow: 0 0 10px #719ECE;
 }
+
+/**  Home Page **/
+#note{
+    background-color: #45c1ff;
+    color: white;
+    border-radius: 10px;
+    padding: 20px;
+    line-height: 30px;
+    font-size: 17px;
+}

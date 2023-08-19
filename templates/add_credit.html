@@ -1,0 +1,44 @@
+{% extends 'dashboard.html' %}
+{% load static %}
+
+
+          {% block chatlist %}
+            {% for chat in chat_all %}
+                <li>
+                    <a href="{% url 'chat_detail' chat.id %}" class="nav-link"> <img src="{% static 'img/chaticon.png' %}"/>  {{chat}}</a>   <a href="{% url 'delete_chat' chat.id %}"><img src="{% static 'img/delete.png' %}"/> </a>
+                </li> 
+            {% endfor %}  
+
+          {% endblock chatlist %}   
+
+
+
+{% block dashboardcontent %}
+<div class="container mt-4 text-center w-75">
+
+
+  <!-- accounts/templates/add_credit.html -->
+  <h1 class="display-6 fs-4">Add Credit</h1>
+  <form method="POST">
+      {% csrf_token %}
+      <div class="justify-content-center">
+        <label class="me-3 mt-3" for="amount"> Amount ( $ ) : </label>
+      </div>
+      <div class="input-group col-md-3 mt-3 mx-auto">
+        <div class="input-group-prepend">
+          <span class="input-group-text">USD</span>
+        </div>
+        <input class="mb-4 form-control" type="number" name="amount" step="any" required>
+      </div>
+      <button class="btn btn-dark" type="submit">Add Credit</button>
+  </form>
+
+  <script src="https://js.stripe.com/v3/"></script>
+  <script>
+      var stripe = Stripe('{{ settings.STRIPE_PUBLIC_KEY }}');
+      var elements = stripe.elements();
+  </script>
+
+
+</div>
+{% endblock dashboardcontent %}

@@ -1,10 +1,6 @@
 from django.contrib.auth import authenticate
-from django.shortcuts import render, redirect
-from django.contrib.auth.models import User, auth
-from django.contrib.auth.decorators import login_required
-from .models import *
-from pptx import Presentation
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.models import User, auth
 from django.contrib.auth.decorators import login_required
 from .models import *
 import openai
@@ -12,6 +8,7 @@ from django.core.files.storage import FileSystemStorage
 from pptx import Presentation
 import os
 from django.conf import settings
+import stripe
 
 
 
@@ -23,6 +20,7 @@ def home(request):
     context = {}
         
     return render(request, template, context) # Return for Templates
+
 
 
 def dashboard(request):
@@ -103,3 +101,30 @@ def delete_chat(request, chat_id):   # ```data_id``` should be pass in url as <d
     data = Chat.objects.get(pk=chat_id)
     data.delete()
     return redirect('/dashboard')
+
+
+
+
+@login_required
+def profile(request):
+    chat_all = Chat.objects.all()
+    user_profile = UserProfile.objects.get(user=request.user)
+    context = {'chat_all': chat_all,'user_profile': user_profile }
+    return render(request, 'profile.html', context)
+
+
+stripe.api_key = 'pk_live_51NZ4WlCKOF2epxBGIGoCZjLexWLCCfu7zROz4ROpvmBUdHsxXLlcjBYLdza7jOubKaMSSp4mEnrE9HkwXOwFHNje00Jqi14465'
+@login_required
+def add_credit(request):
+    chat_all = Chat.objects.all()
+    context = {'chat_all':chat_all}
+    if request.method == 'POST':
+        amount = int(request.POST.get('amount')) * 100  # Convert to cents for Stripe
+        intent = stripe.PaymentIntent.create(
+            amount=amount,
+            currency='usd',
+            payment_method_types=['card'],
+        )
+        return render(request, 'add_credit.html', {'client_secret': intent.client_secret})
+    return render(request, 'add_credit.html', context)
+
